@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Control - Administrador</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'styles/panelcontrol.css'%}">
+</head>
+    
+<body>
+    <section id="panel-control">
+        <h2>Gestión de Actividades</h2>
+        <div id="crear-actividad" class="accion-panel">
+            <h3>Crear Nueva Actividad</h3>
+            <form action="{% url 'index' %}" method="post">
+                {% csrf_token %}
+                <label for="fecha">Fecha de la actividad:</label>
+                <input type="date" name="fecha" required>
+
+                <label for="nombre">Nombre Actividad:</label>
+                <input type="text" name="nombre" required>
+
+                <label for="ubi">Ubicación:</label>
+                <input type="text" name="ubi" required>
+
+                <label for="hora">Horario actividad:</label>
+                <input type="time" name="hora" required>
+
+                <label for="precio">Precio:</label>
+                <input type="number" name="precio" required>
+
+                <label for="puntos">Puntos de interes:</label>
+                <input type="text" name="puntos" required>
+
+                <label for="dni">DNI/Pasaporte:</label>
+                <input type="text" name="dni" required>
+
+                <button type="submit">Crear</button>
+            </form>
+        </div>
+
+        <div id="punto-interes" class="accion-panel">
+            <h3>Puntos de interes de un destino</h3>
+            <form action="gestion_actividades.html" method="post">
+
+                <label for="fecha">Fecha de la actividad:</label>
+                <input type="date" name="fecha" required>
+
+                <label for="nombre">Nombre Actividad:</label>
+                <input type="text" name="nombre" required>
+
+                <label for="puntos">Puntos de interes:</label>
+                <input type="text" name="puntos" required>
+
+                <button type="submit">Añadir punto</button>
+            </form>
+        </div>
+    </section>
+</body>
+</html>

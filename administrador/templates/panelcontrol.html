@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Control - Administrador</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'styles/panelcontrol.css'%}">
+</head>
+    
+<body>
+    <section id="panel-control">
+            <h2>Panel de Control de Administrador</h2>
+    </section>
+    <nav>
+        <ul>
+            <li><form id="formulario0" action="{% url 'index' %}" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="ID" value="0">
+                <a href="#" id="enviarFormulario0">Gestion Trabajadores</a>
+            </form>
+            </li>
+
+            <li>
+            <form id="formulario1" action="{% url 'index' %}" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="ID" value="1">
+                <a href="#" id="enviarFormulario1">Gestion Itinerarios</a>
+            </form>
+            </li>
+
+            <li>
+            <form id="formulario2" action="{% url 'index' %}" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="ID" value="2">
+                <a href="#" id="enviarFormulario2">Gestion Actividades</a>
+            </form>
+            </li>
+            
+            <li>
+            <form id="formulario3" action="{% url 'index' %}" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="ID" value="3">
+                <a href="#" id="enviarFormulario3">Gestion Promociones</a>
+            </form>
+            </li>
+
+            <li>
+            <form id="formulario4" action="{% url 'index' %}" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="ID" value="4">
+                <a href="#" id="enviarFormulario4">Gestion Clientes</a>
+            </form>
+            </li>
+        </ul>
+    </nav>
+
+    <div id="{{tipo0}}">
+        {% include 'gestion_trabajadores.html'%}
+    </div>
+    <div id="{{tipo1}}">
+        {% include 'gestion_itinerarios.html' with Itin0=Itin0 Itin1=Itin1%}
+    </div>
+    <div id="{{tipo2}}">
+        {% include 'gestion_actividades.html' %}
+    </div>
+    <div id="{{tipo3}}">
+        {% include 'gestion_promociones.html' %}
+    </div>
+    <div id="{{tipo4}}">
+        {% include 'gestion_clientes.html' with Cliente0=Clientes0 Cliente1=Clientes1 Cliente2=Clientes2%}
+    </div>
+
+    <script>
+        // JavaScript para enviar el formulario cuando se hace clic en el hipervínculo
+        document.getElementById('enviarFormulario0').addEventListener('click', function() {
+            // Obtener el formulario por su ID
+            var formulario = document.getElementById('formulario0');
+            // Enviar el formulario
+            formulario.submit();
+        });
+
+        // JavaScript para enviar el formulario cuando se hace clic en el hipervínculo
+        document.getElementById('enviarFormulario1').addEventListener('click', function() {
+            // Obtener el formulario por su ID
+            var formulario = document.getElementById('formulario1');
+            // Enviar el formulario
+            formulario.submit();
+        });
+
+        // JavaScript para enviar el formulario cuando se hace clic en el hipervínculo
+        document.getElementById('enviarFormulario2').addEventListener('click', function() {
+            // Obtener el formulario por su ID
+            var formulario = document.getElementById('formulario2');
+            // Enviar el formulario
+            formulario.submit();
+        });
+
+        // JavaScript para enviar el formulario cuando se hace clic en el hipervínculo
+        document.getElementById('enviarFormulario3').addEventListener('click', function() {
+            // Obtener el formulario por su ID
+            var formulario = document.getElementById('formulario3');
+            // Enviar el formulario
+            formulario.submit();
+        });
+
+        // JavaScript para enviar el formulario cuando se hace clic en el hipervínculo
+        document.getElementById('enviarFormulario4').addEventListener('click', function() {
+            // Obtener el formulario por su ID
+            var formulario = document.getElementById('formulario4');
+            // Enviar el formulario
+            formulario.submit();
+        });
+    </script>
+
+    
+</body>
+</html>

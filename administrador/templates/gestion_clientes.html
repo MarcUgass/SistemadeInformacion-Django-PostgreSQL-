@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Control - Administrador</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'styles/panelcontrol.css'%}">
+</head>
+    
+<body>
+    <section id="panel-control">
+        <h2>Gestión de Clientes</h2>
+        <div id="consultar-perfil" class="accion-panel">
+            <h3>Consultar perfil de un cliente</h3>
+            <form action="{% url 'index' %}" method="post">
+                {% csrf_token %}
+
+                <label for="dni">DNI/Pasaporte:</label>
+                <input type="text" name="dni" required>
+                
+                <input type="hidden" name="Control" value="Clientes">
+                <input type="hidden" name="Form" value="Consulta">
+
+
+                <button type="submit">Mostrar</button>
+            </form>
+            <div class="container" id="{{Cliente0}}">
+                <h2>Perfil del Cliente</h2>
+                <div>
+                    <p><strong>Nombre:</strong> {{ first_name }}</p>
+                    <p><strong>Apellido:</strong> {{ last_name }}</p>
+                    <p><strong>DNI:</strong> {{ dni }}</p>
+                    <p><strong>Fecha de nacimiento:</strong> {{ fecha_nacimiento }}</p>
+                    <p><strong>Correo:</strong> {{ email }}</p>
+                    <p><strong>Telefono:</strong> {{ telefono }}</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="modificar-datos-clientes" class="accion-panel">
+            <h3>Modificar Datos de un Cliente</h3>
+            <form action="{% url 'index' %}" method="post">
+                {% csrf_token %}
+
+                <label for="nombre">Nombre:</label>
+                <input type="text" name="nombre" required>
+                
+                <label for="apellido">Apellido:</label>
+                <input type="text" name="apellido" required>
+                
+                <label for="dni">DNI/Pasaporte:</label>
+                <input type="text" name="dni" required>
+    
+                <label for="fecha_nacimiento">Fecha de nacimiento:</label>
+                <input type="date" name="fecha_nacimiento" required>
+                
+                <label for="correo">Correo electrónico:</label>
+                <input type="email" name="correo" required>
+                
+                <label for="telefono">Teléfono móvil:</label>
+                <input type="tel" name="telefono" required>
+
+                <input type="hidden" name="Control" value="Clientes">
+                <input type="hidden" name="Form" value="Alteracion">
+                <h2 id="{{Cliente1}}">Datos modificados con éxito!</h2>
+                <br>
+                <button type="submit">Modificar</button>
+            </form>
+        </div>
+
+        <div id="borrar-datos-clientes" class="accion-panel">
+            <h3>Borrar Datos de un Cliente</h3>
+            <form action="{% url 'index' %}" method="post">
+                {% csrf_token %}
+                
+                <label for="dni">DNI/Pasaporte:</label>
+                <input type="text" name="dni" required>
+
+                <input type="hidden" name="Control" value="Clientes">
+                <input type="hidden" name="Form" value="Borrado">
+                <h2 id="{{Cliente2}}">Datos borrados con éxito!</h2>
+                <br>
+                <button type="submit">Borrar</button>
+            </form>
+        </div>
+    </section>
+
+</body>
+</html>
+

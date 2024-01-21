@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Control - Administrador</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'styles/panelcontrol.css'%}">
+</head>
+    
+<body>
+    <section id="panel-control">
+        <h2>Gestión y Pago de Promociones</h2>
+        <div id="nueva-promocion" class="accion-panel">
+            <h3>Registrar Nueva Promocion</h3>
+            <form action="{% url 'index' %}" method="post">
+                {% csrf_token %}
+                <label for="nombre">Nombre Promocion:</label>
+                <input type="text" name="nombre" required>
+
+                <label for="fecha_ini">Fecha de inicio:</label>
+                <input type="date" name="fecha_ini" required>
+
+                <label for="fecha_fin">Fecha de finalización:</label>
+                <input type="date" name="fecha_fin" required>
+
+                <label for="precio">Precio:</label>
+                <input type="number" name="precio" required>
+
+                <label for="dni">DNI:</label>
+                <input type="text" name="dni" required>
+
+                <input type="hidden" name="Control" value="Promociones">
+                <input type="hidden" name="Form" value="Creación">
+
+                <h3 id="{{Promo0}}">Promocion registrada con éxito, Identificador: {{ID}}</h3>
+                <button type="submit">Registrar</button>
+            </form>
+        </div>
+
+        <div id="devolucion" class="accion-panel">
+            <h3>Realizar devoluciones</h3>
+            <form action="{% url 'index' %}" method="post">
+                {% csrf_token %}
+                <label for="id">Identificador del pago:</label>
+                <input type="text" name="id" required>
+
+                <label for="dni">DNI/Pasaporte:</label>
+                <input type="text" name="dni" required>
+
+                <input type="hidden" name="Control" value="Promociones">
+                <input type="hidden" name="Form" value="devolucion">
+
+                <h3 id="{{Promo1}}">Devolución realizada con éxito:</h3>
+                <button type="submit">Aceptar</button>
+            </form>
+        </div>
+    </section>
+
+</body>
+</html>

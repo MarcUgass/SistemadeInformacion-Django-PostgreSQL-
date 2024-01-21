@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Control - Administrador</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'styles/panelcontrol.css'%}">
+</head>
+    
+<body>
+    <section id="panel-control">
+        <h2>Gestión de Itinerarios</h2>
+        <div id="registrar-itinerario" class="accion-panel">
+            <h3>Crear Itinerario</h3>
+            <form action="{% url 'index' %}" method="post">
+                {% csrf_token %}
+                <label for="fecha_ini">Fecha de salida:</label>
+                <input type="date" name="fecha_ini" required>
+
+                <label for="fecha_fin">Fecha de llegada:</label>
+                <input type="date" name="fecha_fin" required>
+
+                <label for="transporte">Medio_transporte:</label>
+                <input type="text" name="transporte" required>
+
+                <label for="origen">Origen:</label>
+                <input type="text" name="origen" required>
+
+                <label for="destino">Destino:</label>
+                <input type="text" name="destino" required>
+
+                <label for="precio">Precio:</label>
+                <input type="number" name="precio" required>
+
+                <input type="hidden" name="Control" value="Itinerarios">
+                <input type="hidden" name="Form" value="Creación">
+
+                <h3 id="{{Itin0}}">Itineario registrado con éxito</h3>
+                <button type="submit">Registrar</button>
+            </form>
+        </div>
+
+        <div id="cambios-imprevistos" class="accion-panel">
+            <h3>Cambios Imprevistos</h3>
+            <form action="{% url 'index' %}" method="post">
+                {% csrf_token %}
+                <label for="ID">Fecha de salida:</label>
+                <input type="number" name="ID" required>
+
+                <label for="fecha_ini">Fecha de salida:</label>
+                <input type="date" name="fecha_ini" required>
+
+                <label for="fecha_fin">Fecha de llegada:</label>
+                <input type="date" name="fecha_fin" required>
+
+                <label for="transporte">Medio_transporte:</label>
+                <input type="text" name="transporte" required>
+
+                <label for="origen">Origen:</label>
+                <input type="text" name="origen" required>
+
+                <label for="destino">Destino:</label>
+                <input type="text" name="destino" required>
+
+                <label for="precio">Precio:</label>
+                <input type="number" name="precio" required>
+
+                <input type="hidden" name="Control" value="Itinerarios">
+                <input type="hidden" name="Form" value="Alteracion">
+
+                <button type="submit">Realizar cambio</button>
+            </form>
+        </div>
+    </section>
+</body>
+</html>

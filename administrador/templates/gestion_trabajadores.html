@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Control - Administrador</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'styles/panelcontrol.css'%}">
+</head>
+<body>
+    <section id="gestion-trabajadores">
+        <h2>Gestión de Trabajadores</h2>
+        <div id="registro-empleados" class="accion-panel">
+            <h3>Registro de Empleados</h3>
+            <form action="{% url 'index' %}" method="post">
+                {% csrf_token %}            
+                <label for="nombre">Nombre:</label>
+                <input type="text" name="nombre" required>
+                
+                <label for="apellido">Apellido:</label>
+                <input type="text" name="apellido" required>
+                
+                <label for="dni">DNI/Pasaporte:</label>
+                <input type="text" name="dni" required>
+    
+                <label for="fecha_nacimiento">Fecha de nacimiento:</label>
+                <input type="date" name="fecha_nacimiento" required>
+                
+                <label for="correo">Correo electrónico:</label>
+                <input type="email" name="correo" required>
+                
+                <label for="telefono">Teléfono móvil:</label>
+                <input type="tel" name="telefono" required>
+                
+                <label for="tarea">Tarea:</label>
+                <input type="text" name="tarea" required>
+
+                <label for="fecha_ini">Fecha de inicio:</label>
+                <input type="date" name="fecha_ini" required>
+
+                <label for="fecha_fin">Fecha final:</label>
+                <input type="date" name="fecha_fin" required>
+                
+                <label for="salario">Salario:</label>
+                <input type="number" name="salario" required>
+
+                <input type="hidden" name="Control" value="Trabajadores">
+                <input type="hidden" name="Form" value="Registro">    
+
+                <button type="submit">Registrar</button>
+            </form>
+        </div>
+
+        <div id="actualizacion-salario" class="accion-panel">
+            <h3>Actualización de Salario</h3>
+            <form action="gestion_trabajadores.html" method="post">
+            
+                <label for="dni">DNI/Pasaporte:</label>
+                <input type="text" name="dni" required>
+
+                <label for="salario">Salario:</label>
+                <input type="number" name="salario" required>
+
+                <button type="submit">Cambiar</button>
+            </form>
+        </div>
+
+        <div id="asignacion-tareas" class="accion-panel">
+            <h3>Asignación de Tareas</h3>
+            <form action="gestion_trabajadores.html" method="post">
+            
+                <label for="dni">DNI/Pasaporte:</label>
+                <input type="text" name="dni" required>
+
+                <label for="tarea">Tarea:</label>
+                <input type="text" name="tarea" required>
+
+                <label for="fecha_ini">Fecha de inicio:</label>
+                <input type="date" name="fecha_ini" required>
+
+                <label for="fecha_fin">Fecha final:</label>
+                <input type="date" name="fecha_fin" required>
+
+                <button type="submit">Assignar</button>
+            </form>
+        </div>
+
+        <div id="dar-de-baja" class="accion-panel">
+            <h3>Dar de Baja Empleado</h3>
+            <form action="gestion_trabajadores.html" method="post">
+                <label for="dni">DNI/Pasaporte:</label>
+                <input type="text" name="dni" required>
+
+                <button type="submit">Dar de baja</button>
+            </form>
+        </div>
+
+        <div id="consulta-expediente" class="accion-panel">
+            <h3>Consultar Expediente</h3>
+            <form action="gestion_trabajadores.html" method="post">
+                <label for="dni">DNI/Pasaporte:</label>
+                <input type="text" name="dni" required>
+
+                <button type="submit">Consultar</button>
+
+            </form>
+        </div>
+    </section>
+</body>
+</html>
