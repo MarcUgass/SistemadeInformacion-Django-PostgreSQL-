@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Práctica 3</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'styles/index.css' %}">
+</head>
+<style>
+    {% load static %}
+    body {background-image: url("{% static 'images/fondo_index.webp' %}");}
+</style>
+<body>
+    <div class="container">
+        <h2>Bienvenido</h2>
+        <div>
+            <a href="{% url 'inicioSesion'%}"><button id="iniciar_sesion">Iniciar Sesión</button></a> 
+            <a href="{% url 'registro'%}"><button>Registrarse</button></a>
+        </div>
+    </div>
+</body>
+</html>

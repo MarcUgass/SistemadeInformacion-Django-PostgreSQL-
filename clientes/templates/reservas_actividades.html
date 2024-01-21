@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservas y Actividades</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'styles/reserva.css'%}">
+</head>
+<body>
+    <div class="container">
+        <h2>Reservas y Actividades</h2>
+        <div class="activity-list">
+            <!-- Lista de actividades y itinerario -->
+        </div>
+        <a href="{% url 'perfil'%}"><button class="profile-button">Ver Perfil</button></a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil del Cliente</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'styles/perfil.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h2>Perfil del Cliente</h2>
+        <div>
+            <p><strong>Nombre:</strong> {{ first_name }}</p>
+            <p><strong>Apellido:</strong> {{ last_name }}</p>
+            <p><strong>DNI:</strong> {{ dni }}</p>
+            <p><strong>Fecha de nacimiento:</strong> {{ fecha_nacimiento }}</p>
+            <p><strong>Correo:</strong> {{ email }}</p>
+            <p><strong>Telefono:</strong> {{ telefono }}</p>
+            <form action="{% url 'perfil' %}" method="post">
+                {% csrf_token %}
+                <button class="modify-button">Modificar</button>
+            </form>
+            <form action="{% url 'index' %}" method="post">
+                {% csrf_token %}
+                <button class="modify-button">Cerrar sesion</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

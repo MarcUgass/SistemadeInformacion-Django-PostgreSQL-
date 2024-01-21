@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Perfil</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'styles/registro.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h2>Modificar Perfil</h2>
+
+        <form action="{% url 'perfil' %}" method="post">
+            {% csrf_token %}
+            <label for="nombre">Nombre:</label>
+            <input type="text" name="nombre" value="{{ first_name }}" required>
+            
+            <label for="apellido">Apellido:</label>
+            <input type="text" name="apellido" value="{{ last_name }}" required>
+
+            <label for="fecha_nacimiento">Fecha de nacimiento:</label>
+            <input type="date" name="fecha_nacimiento" value="{{ fecha_nacimiento }}" required>
+            
+            <label for="correo">Correo electrónico:</label>
+            <input type="email" name="correo" value="{{ email }}" required>
+            
+            <label for="telefono">Teléfono móvil:</label>
+            <input type="tel" name="telefono" value="{{ telefono }}" required>
+
+
+            <button type="submit">Aplicar Cambios</button>
+        </form>
+        <form id="formulario1" action="{% url 'perfil' %}" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="mod" value="2">
+            <button type="submit">Cerrar Sesion</button>
+        </form>
+
+        
+</body>
+</html>

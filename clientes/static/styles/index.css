@@ -1,0 +1,35 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-size: cover;
+    background-position: center top;
+}
+
+.container {
+    text-align: center;
+    padding: 100px;
+    color: black; /* Color del texto */
+}
+
+h2 {
+    font-size: 4em;
+    margin-top: 20px;
+}
+
+button {
+    padding: 15px 30px;
+    font-size: 1.2em;
+    margin: 20px 20px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    background-color: #3498db;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+button:hover {
+    background-color: #2980b9;
+}

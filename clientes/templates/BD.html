@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seminario 2 DDSI</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'styles/BD.css' %}">
+</head>
+
+<body>
+    <div class="contenedorPrincipal">
+
+        <div class="javierPadre">
+            {% load static %}
+            <img src="{% static 'imagenes/havi.png' %}" alt="Javi no se puede poner ahora" class="Javisito">
+            <link href="https://youtu.be/UidCG5APHc0?si=bOBLUld3WiUJ_UT7"><span class="textoJavi">Hola mundo</span>
+        </div>
+            <a href="{% url 'genBD' %}"><button type="submit" class="boton" >Crear BD</button></a>
+            <p>{{miTexto}}</p>
+            <p>{{fechaPed}}</p>
+            <p>{{codCliente}}</p>
+            <p>{{codProd}}</p>
+            <p>{{codPed}}</p>
+            <p>{{cantidad}}</p>
+        </div>
+
+    </div>
+</body>
+
+</html>
