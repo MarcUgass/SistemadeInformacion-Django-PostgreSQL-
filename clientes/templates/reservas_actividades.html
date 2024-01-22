@@ -7,11 +7,27 @@
     {% load static %}
     <link rel="stylesheet" href="{% static 'styles/reserva.css'%}">
 </head>
+<style>
+{% load static %}
+body {background-image: url("{% static 'images/reserva.jpg' %}");}
+</style>
 <body>
     <div class="container">
         <h2>Reservas y Actividades</h2>
         <div class="activity-list">
-            <!-- Lista de actividades y itinerario -->
+            <h3>Itinerarios:</h3>
+            <ul>
+                {% for itinerario in itinerarios %}
+                    <li>{{ itinerario.0 }} - {{ itinerario.1 }} a {{ itinerario.2 }} - Precio: {{ itinerario.5 }}€</li>
+                {% endfor %}
+            </ul>
+
+            <h3>Actividades:</h3>
+            <ul>
+                {% for actividad in actividades %}
+                    <li>{{ actividad.2 }} - Fecha: {{ actividad.1 }}</li>
+                {% endfor %}
+            </ul>
         </div>
         <a href="{% url 'perfil'%}"><button class="profile-button">Ver Perfil</button></a>
     </div>

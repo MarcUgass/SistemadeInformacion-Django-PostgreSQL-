@@ -2,7 +2,6 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-image: url('reserva.jpg'); 
     background-size: cover;
     background-position: center top;
     color: #fff;
@@ -15,15 +14,21 @@ body {
     background-color: rgba(0, 0, 0, 0.7);
     border-radius: 10px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
+
+.activity-list {
+    margin-top: 20px;
+    text-align: left;
+}
+
 
 h2 {
     text-align: center;
 }
 
-.activity-list {
-    margin-top: 20px;
-}
 
 .activity-item {
     background-color: rgba(255, 255, 255, 0.8);
@@ -47,11 +52,25 @@ h2 {
     border-radius: 5px;
     cursor: pointer;
     margin-top: 20px;
-    display: block;
     width: 100%;
     text-align: center;
+    transition: background-color 0.3s ease;
 }
 
 .profile-button:hover {
     background-color: #2980b9;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 5px;
+    margin-bottom: 10px;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
 }

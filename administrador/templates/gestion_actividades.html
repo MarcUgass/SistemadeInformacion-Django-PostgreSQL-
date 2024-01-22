@@ -7,7 +7,7 @@
     {% load static %}
     <link rel="stylesheet" href="{% static 'styles/panelcontrol.css'%}">
 </head>
-    
+
 <body>
     <section id="panel-control">
         <h2>Gestión de Actividades</h2>
@@ -15,6 +15,7 @@
             <h3>Crear Nueva Actividad</h3>
             <form action="{% url 'index' %}" method="post">
                 {% csrf_token %}
+
                 <label for="fecha">Fecha de la actividad:</label>
                 <input type="date" name="fecha" required>
 
@@ -30,19 +31,21 @@
                 <label for="precio">Precio:</label>
                 <input type="number" name="precio" required>
 
-                <label for="puntos">Puntos de interes:</label>
-                <input type="text" name="puntos" required>
-
                 <label for="dni">DNI/Pasaporte:</label>
                 <input type="text" name="dni" required>
+
+                <input type="hidden" name="Control" value="Actividades">
+                <input type="hidden" name="Form" value="Creación">
+                <h2 id="{{Act0}}">Actividad creada con éxito</h2>
 
                 <button type="submit">Crear</button>
             </form>
         </div>
 
-        <div id="punto-interes" class="accion-panel">
+        <div id="punto-interés" class="accion-panel">
             <h3>Puntos de interes de un destino</h3>
-            <form action="gestion_actividades.html" method="post">
+            <form action="{% url 'index' %}" method="post">
+                {% csrf_token %}
 
                 <label for="fecha">Fecha de la actividad:</label>
                 <input type="date" name="fecha" required>
@@ -53,6 +56,10 @@
                 <label for="puntos">Puntos de interes:</label>
                 <input type="text" name="puntos" required>
 
+                <input type="hidden" name="Control" value="Actividades">
+                <input type="hidden" name="Form" value="PInteres">
+
+                <h2 id="{{Act1}}">Punto de interés añadido con éxito</h2>
                 <button type="submit">Añadir punto</button>
             </form>
         </div>

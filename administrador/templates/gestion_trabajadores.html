@@ -13,7 +13,8 @@
         <div id="registro-empleados" class="accion-panel">
             <h3>Registro de Empleados</h3>
             <form action="{% url 'index' %}" method="post">
-                {% csrf_token %}            
+                {% csrf_token %}
+            
                 <label for="nombre">Nombre:</label>
                 <input type="text" name="nombre" required>
                 
@@ -45,15 +46,17 @@
                 <input type="number" name="salario" required>
 
                 <input type="hidden" name="Control" value="Trabajadores">
-                <input type="hidden" name="Form" value="Registro">    
+                <input type="hidden" name="Form" value="Creación">
 
+                <h2 id="{{Trab0}}">Empleado creado con éxito</h2>
                 <button type="submit">Registrar</button>
             </form>
         </div>
 
         <div id="actualizacion-salario" class="accion-panel">
             <h3>Actualización de Salario</h3>
-            <form action="gestion_trabajadores.html" method="post">
+            <form action="{% url 'index' %}" method="post">
+                {% csrf_token %}
             
                 <label for="dni">DNI/Pasaporte:</label>
                 <input type="text" name="dni" required>
@@ -61,13 +64,18 @@
                 <label for="salario">Salario:</label>
                 <input type="number" name="salario" required>
 
+                <input type="hidden" name="Control" value="Trabajadores">
+                <input type="hidden" name="Form" value="ActSalario">
+
+                <h2 id="{{Trab1}}">Salario asignada con éxito</h2>
                 <button type="submit">Cambiar</button>
             </form>
         </div>
 
         <div id="asignacion-tareas" class="accion-panel">
             <h3>Asignación de Tareas</h3>
-            <form action="gestion_trabajadores.html" method="post">
+            <form action="{% url 'index' %}" method="post">
+                {% csrf_token %}
             
                 <label for="dni">DNI/Pasaporte:</label>
                 <input type="text" name="dni" required>
@@ -80,6 +88,9 @@
 
                 <label for="fecha_fin">Fecha final:</label>
                 <input type="date" name="fecha_fin" required>
+                <h2 id="{{Trab2}}">Tarea asignada con éxito</h2>
+                <input type="hidden" name="Control" value="Trabajadores">
+                <input type="hidden" name="Form" value="ActTarea">
 
                 <button type="submit">Assignar</button>
             </form>
@@ -87,9 +98,14 @@
 
         <div id="dar-de-baja" class="accion-panel">
             <h3>Dar de Baja Empleado</h3>
-            <form action="gestion_trabajadores.html" method="post">
+            <form action="{% url 'index' %}" method="post">
+                {% csrf_token %}
                 <label for="dni">DNI/Pasaporte:</label>
                 <input type="text" name="dni" required>
+
+                <input type="hidden" name="Control" value="Trabajadores">
+                <input type="hidden" name="Form" value="Borrar">
+                <h2 id="{{Trab3}}">Empleado eliminado</h2>
 
                 <button type="submit">Dar de baja</button>
             </form>
@@ -97,13 +113,31 @@
 
         <div id="consulta-expediente" class="accion-panel">
             <h3>Consultar Expediente</h3>
-            <form action="gestion_trabajadores.html" method="post">
+            <form action="{% url 'index' %}" method="post">
+                {% csrf_token %}
                 <label for="dni">DNI/Pasaporte:</label>
                 <input type="text" name="dni" required>
+
+                <input type="hidden" name="Control" value="Trabajadores">
+                <input type="hidden" name="Form" value="Consulta">
 
                 <button type="submit">Consultar</button>
 
             </form>
+            <div class="container"  id="{{Trab4}}">
+                <h2>Perfil del Empleado</h2>
+                <div>
+                    <p><strong>Nombre:</strong> {{ first_name }}</p>
+                    <p><strong>Apellido:</strong> {{ last_name }}</p>
+                    <p><strong>DNI:</strong> {{ dni }}</p>
+                    <p><strong>Fecha de nacimiento:</strong> {{ fecha_nacimiento }}</p>
+                    <p><strong>Correo:</strong> {{ email }}</p>
+                    <p><strong>Telefono:</strong> {{ telefono }}</p>
+                    <p><strong>Fecha inicio de tarea:</strong> {{ fecha_ini }}</p>
+                    <p><strong>Fecha fin de tarea:</strong> {{ fecha_fin }}</p>
+                    <p><strong>Salario:</strong> {{ salario }}</p>
+                </div>
+            </div>
         </div>
     </section>
 </body>

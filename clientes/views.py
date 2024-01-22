@@ -8,7 +8,7 @@ from api.Disparadores import *
 from api.ActualizarTablas import * 
 
 # Create your views here.
-def index(request):
+def index2(request):
     if request.method == 'POST':
         request.session['dni'] = ""
     elif(request.session.get('dni', "") != ""):
@@ -16,6 +16,7 @@ def index(request):
     return render(request, 'index.html')
 
 def inicioSesion(request):
+    request.session['dni'] = ""
     if request.method == "POST":
         connection = psycopg2.connect(
         dbname="postgres",
@@ -70,6 +71,7 @@ def baseDeDatos(request):
     return render(request, 'BD-html')
 
 def generarBaseDeDatos(request):
+    request.session['modificando'] = ""
 
     connection = psycopg2.connect(
     dbname="postgres",
@@ -80,10 +82,19 @@ def generarBaseDeDatos(request):
     )
 
     connection.autocommit = False
-
+    
+    drop(connection)
     crearBaseDeDatos(connection)
 
-    borrarDisparadores(connection)
+    borrarFunciones(connection)
+    
+    tables = ['Empleado', 'TareaEmpleado', 'Itinerario', 'OrganizaActividad', 'AsisteActividad',
+              'Pago', 'ConsultaPromocion', 'Cliente']
+
+    for table in tables:
+        borrarDisparadores(connection, table)
+
+
     crearDisparadores(connection)
 
     connection.close()
@@ -105,9 +116,8 @@ def perfil(request):
     )
 
     if request.POST.get("mod", "") == "2":
-        print("Hola")
         request.session['modificando'] = ""
-        return redirect('perfil')
+        return redirect(inicioSesion)
     
     if(request.method == 'POST' or request.session.get("modificando","") == "1"):
         if(request.POST.get("nombre", "") == ""):
@@ -134,4 +144,27 @@ def perfil(request):
     
 def reservas(request):
     request.session['modificando'] = ""
-    return render(request, 'reservas_actividades.html')
+    conn = psycopg2.connect(
+        dbname="postgres",
+        user="postgres",
+        password="1234",
+        host="localhost",
+        port="5432"
+        )
+
+    cursor = conn.cursor()
+
+    cursor.execute("""
+        SELECT * FROM Itinerario;
+    """)
+    itinerarios = cursor.fetchall()
+
+    cursor.execute("""
+        SELECT * FROM OrganizaActividad;
+    """)
+    actividades = cursor.fetchall()
+
+    cursor.close()
+    conn.close()
+
+    return render(request, 'reservas_actividades.html', {'itinerarios': itinerarios, 'actividades': actividades})

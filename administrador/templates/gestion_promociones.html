@@ -7,7 +7,7 @@
     {% load static %}
     <link rel="stylesheet" href="{% static 'styles/panelcontrol.css'%}">
 </head>
-    
+
 <body>
     <section id="panel-control">
         <h2>Gestión y Pago de Promociones</h2>
@@ -33,12 +33,11 @@
                 <input type="hidden" name="Control" value="Promociones">
                 <input type="hidden" name="Form" value="Creación">
 
-                <h3 id="{{Promo0}}">Promocion registrada con éxito, Identificador: {{ID}}</h3>
+                <h3 id="{{Promo0}}">Promocion registrada con éxito</h3>
                 <button type="submit">Registrar</button>
             </form>
         </div>
-
-        <div id="devolucion" class="accion-panel">
+<div id="devolucion" class="accion-panel">
             <h3>Realizar devoluciones</h3>
             <form action="{% url 'index' %}" method="post">
                 {% csrf_token %}

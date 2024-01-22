@@ -5,6 +5,7 @@ from datetime import datetime, timedelta
 def registroEmpleado(connection, DNI_empleado, Nombre, Apellido, Fecha_nacimiento, Correo, Telefono,
                             Fecha_ini_tarea, Fecha_fin_tarea, Salario):
 
+    result = 0
     # Execute a SQL query
     cursor = connection.cursor()
     insert_query = f"INSERT INTO Empleado (DNI, Nombre, Apellidos, FechaNacimiento, Email, Telefono, FechaInicioTarea, FechaFinTarea, Salario) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)"
@@ -13,14 +14,18 @@ def registroEmpleado(connection, DNI_empleado, Nombre, Apellido, Fecha_nacimient
         cursor.execute(insert_query, (DNI_empleado, Nombre, Apellido, Fecha_nacimiento, Correo, Telefono, Fecha_ini_tarea,
                                     Fecha_fin_tarea, Salario))
         connection.commit()
-    except Exception as error:
+    except psycopg2.InternalError as error:
         connection.rollback()
         print(f"{error}")
+        result = 1
     except:
         connection.rollback()
         print("Error al insertar empleado")
+        result = 1
     finally:
         cursor.close()
+
+    return result
 
 
 def tareaEmpleado(connection, DNI_empleado, Tarea):
@@ -45,6 +50,8 @@ def tareaEmpleado(connection, DNI_empleado, Tarea):
 def registroItinerario(connection, ID, MedioTransporte, Fecha_salida, Fecha_llegada, Origen, Destino, Precio):
 
     # Execute a SQL query
+    result = 0
+
     cursor = connection.cursor()
     insert_query = f"INSERT INTO Itinerario (ID, MedioTransporte, FechaInicio, FechaFin, Origen, Destino, Precio) VALUES (%s, %s, %s, %s, %s, %s, %s)"
 
@@ -54,8 +61,11 @@ def registroItinerario(connection, ID, MedioTransporte, Fecha_salida, Fecha_lleg
     except psycopg2.InternalError as error:
         connection.rollback()
         print(f"{error}")
+        result = 1
     finally:
         cursor.close()
+    
+    return result
 
 
 def registroPromocion(connection, ID, Nombre, Fecha_ini, Fecha_fin, Destino, Precio):
@@ -67,9 +77,9 @@ def registroPromocion(connection, ID, Nombre, Fecha_ini, Fecha_fin, Destino, Pre
     try:
         cursor.execute(insert_query, (ID, Nombre, Fecha_ini, Fecha_fin, Destino, Precio))
         connection.commit()
-    except Exception as e:
+    except:
         connection.rollback()
-        print(f"Error al insertar promocion:  {e}")
+        print("Error al insertar promocion")
     finally:
         cursor.close()
 
@@ -138,6 +148,8 @@ def registroActividad(connection, DNI, Fecha, Nombre, Horario, Ubicacion, Precio
 
     # Execute a SQL query
 
+    result = 0;
+
     cursor = connection.cursor()
 
     insert_query_1 = f"INSERT INTO OrganizaActividad (DNI, Fecha, Nombre) VALUES (%s, %s, %s)"
@@ -147,9 +159,11 @@ def registroActividad(connection, DNI, Fecha, Nombre, Horario, Ubicacion, Precio
     except psycopg2.InternalError as error:
         connection.rollback()
         print(f"{error}")
+        result = 1
     except:
         connection.rollback()
         print("Error al insertar actividad")
+        result = 1
 
     insert_query_2 = f"INSERT INTO HorarioActividad (Fecha, Nombre, Horario) VALUES (%s, %s, %s)"
     try:
@@ -158,6 +172,7 @@ def registroActividad(connection, DNI, Fecha, Nombre, Horario, Ubicacion, Precio
     except:
         connection.rollback()
         print("Error al insertar horario actividad")
+        result = 1
 
     insert_query_3 = f"INSERT INTO UbicacionActividad (Fecha, Nombre, Ubicacion, Precio) VALUES (%s, %s, %s, %s)"
     try:
@@ -166,6 +181,7 @@ def registroActividad(connection, DNI, Fecha, Nombre, Horario, Ubicacion, Precio
     except:
         connection.rollback()
         print("Error al insertar ubicacion actividad")
+        result = 1
 
     insert_query_4 = f"INSERT INTO PuntosInteresActividad (Fecha, Nombre, PuntoInteres) VALUES (%s, %s, %s)"
     try:
@@ -174,8 +190,10 @@ def registroActividad(connection, DNI, Fecha, Nombre, Horario, Ubicacion, Precio
     except:
         connection.rollback()
         print("Error al insertar punto interes actividad")
+        result = 1
 
     cursor.close()
+    return result
 
 
 def registroAsistenteActividad(connection, Fecha, Nombre, DNI):

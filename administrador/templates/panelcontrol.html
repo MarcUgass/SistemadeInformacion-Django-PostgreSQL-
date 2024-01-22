@@ -56,16 +56,16 @@
     </nav>
 
     <div id="{{tipo0}}">
-        {% include 'gestion_trabajadores.html'%}
+        {% include 'gestion_trabajadores.html' with Trab0=Trab0 Trab1=Trab1 Trab2=Trab2 Trab3=Trab3 Trab4=Trab4%}
     </div>
     <div id="{{tipo1}}">
         {% include 'gestion_itinerarios.html' with Itin0=Itin0 Itin1=Itin1%}
     </div>
     <div id="{{tipo2}}">
-        {% include 'gestion_actividades.html' %}
+        {% include 'gestion_actividades.html' with Act0=Act0 Act1=Act1%}
     </div>
     <div id="{{tipo3}}">
-        {% include 'gestion_promociones.html' %}
+        {% include 'gestion_promociones.html' with Promo0=Promo0 Promo1=Promo1 %}
     </div>
     <div id="{{tipo4}}">
         {% include 'gestion_clientes.html' with Cliente0=Clientes0 Cliente1=Clientes1 Cliente2=Clientes2%}
